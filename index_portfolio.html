@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Signage app</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@800&display=swap" rel="stylesheet">
+    <style>
+      body{
+        height: 100vh;
+        width: 100vw;
+        padding: 0;
+        margin: 0;
+        background: #f2f2f4;
+        box-sizing: border-box;
+        font-family: 'M PLUS Rounded 1c', sans-serif;
+      }
+      .container{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+      }
+      .logo{
+        margin-top: 300px;
+      }
+      .items-container{
+        margin: 30px auto;
+        width: 100%;
+        position: relative;
+      }
+      .banner{
+        position: absolute;
+        right: 10px;
+        transform: rotate(5deg);
+      }
+      .items{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-top: 125px;
+      }
+      .item{
+        width: 400px;
+        height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .item .image{
+        padding: 20px;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        position: relative;
+        border-radius: 50%;
+        box-shadow: 2px 2px 9px 2px rgba(0,0,0,0.1);
+      }
+      .item .badge{
+        position: absolute;
+        top: 10px;
+        left: 150px;
+        height: 60px;
+        width: 60px;
+        background: red;
+        border-radius: 50%;
+        color: white;
+        font-size: 40px;
+        text-align: center;
+      }
+      .item .badge span{
+        font-size: 25px;
+        margin-bottom: 15px;
+        position: absolute;
+        top: 7px;
+        left: 2px;
+      }
+      .item .content{
+        margin-left: 20px;
+        line-height: 30px;
+        width: 200px;
+        font-size: 30px;
+      }
+      .item .content .item-price{
+        display: flex;
+        justify-content: space-between;
+      }
+      .item .content .item-price .old-price{
+        text-decoration: line-through;
+      }
+      .item .content .item-price .current-price{
+        -webkit-text-stroke: 2px red;
+      }
+      .gift{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        height: 256px;
+        z-index: -1;
+      }
+      .top-right{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+      }
+      .top-left{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">
+        <img src="./assets/image/logo.png" width="500" alt="">
+      </div>
+      <div class="items-container">
+        <div class="banner">
+          <img src="./assets/image/top10.png" alt="">
+        </div>
+        <div class="top-item">
+
+        </div>
+        <div class="items">
+        </div>
+      </div>
+      <img class="gift" src="./assets/image/gift.png" width="400" height="256" alt="">
+      <img class="top-right" src="./assets/image/top-right.png" width="400" height="226" alt="">
+      <img class="top-left" src="./assets/image/top-left.png" width="600" height="500" alt="">
+    </div>
+  </body>
+  <script>
+    let items = [
+      {
+        id: 1,
+        name: 'Soy Milk',
+        image: 'soymilkseries.png',
+        price: '$6',
+        old_price: '$7',
+        popularity: 49
+      },
+      {
+        id: 2,
+        name: 'Taro Ball',
+        image: 'taro-ball.png',
+        price: '$4',
+        old_price: '$8',
+        popularity: 20
+      },
+      {
+        id: 3,
+        name: 'Taro Ball Signature',
+        image: 'Taro-Ball-Signature.png',
+        price: '$5',
+        old_price: '$9',
+        popularity: 32
+      },
+      {
+        id: 4,
+        name: 'Taro bowl',
+        image: 'tarobowl.png',
+        price: '$16',
+        old_price: '$20',
+        popularity: 55
+      },
+      {
+        id: 5,
+        name: 'Tea',
+        image: 'teas.png',
+        price: '$4',
+        old_price: '$6',
+        popularity: 19
+      },
+      {
+        id: 6,
+        name: 'Tofu pudding',
+        image: 'tofupudding.png',
+        price: '$20',
+        old_price: '',
+        popularity: 78
+      },
+      {
+        id: 7,
+        name: 'Fresh milk tea',
+        image: 'freshmilkteas.png',
+        price: '$9',
+        old_price: '$12',
+        popularity: 85
+      },
+      {
+        id: 8,
+        name: 'Herbal tea',
+        image: 'herbalteas.png',
+        price: '$2',
+        old_price: '$3',
+        popularity: 32
+      },
+      {
+        id: 9,
+        name: 'Hot almond soup',
+        image: 'hotalmondsoup.png',
+        price: '$6',
+        old_price: '$10',
+        popularity: 9
+      },
+      {
+        id: 10,
+        name: 'Hot grass jelly',
+        image: 'hotgrassjelly.png',
+        price: '$8',
+        old_price: '',
+        popularity: 29
+      },{
+        id: 11,
+        name: 'Hot purple rice soup',
+        image: 'Hot-Purple-Rice-Soup-Signature.png',
+        price: '$7',
+        old_price: '',
+        popularity: 43
+      },
+      {
+        id: 12,
+        name: 'Icy grass jelly',
+        image: 'iceygrassjelly.png',
+        price: '$12',
+        old_price: '$15',
+        popularity: 24
+      },
+      {
+        id: 13,
+        name: 'Pudding',
+        image: 'pudding.png',
+        price: '$4',
+        old_price: '$7',
+        popularity: 17
+      },
+      {
+        id: 14,
+        name: 'Small bites',
+        image: 'smallbites.png',
+        price: '$16',
+        old_price: '$18',
+        popularity: 3
+      }
+    ] // Get the items from API
+    let rnk = 0
+    let tag = ''
+    items.sort((a, b) => {
+      return a.popularity - b.popularity
+    })
+    items.forEach(item => {
+      rnk++
+      if(rnk > 10){
+        return
+      }
+      tag += `
+        <div class="item">
+          <div class="image">
+            <img src="./assets/items/${item.image}" width="170" alt="Top item image">
+            <div class="badge"><span>#</span> ${rnk}</div>
+          </div>
+          <div class="content">
+            <div class="item-name">
+              ${item.name}
+            </div>
+            <div class="item-price">
+              <span class="old-price">${item.old_price}</span>
+              <span class="current-price">${item.price}</span>
+            </div>
+          </div>
+        </div>
+      `
+    })
+    document.querySelector('.items').innerHTML = tag
+  </script>
+</html>
